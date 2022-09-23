@@ -162,10 +162,16 @@ hr {
     display: block;
     text-align: center;
     margin: 0.25em;
+    max-width: 234px;
 }
 .NameMovie p {
     color: white;
     font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .Movie {
     max-width: 234px;
