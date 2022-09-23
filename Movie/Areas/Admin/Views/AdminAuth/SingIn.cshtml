@@ -1,0 +1,25 @@
+﻿@model string;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/css/AdminStyle/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="MainContext">
+        <p>SingIn</p>
+        <form method="post" action="../../Admin@(Url.Action("SingIn", "AdminAuth"))">
+            <input type="text" name="Login" placeholder="Login" required/>
+            <input type="password" name="Password" placeholder="Password" required/>
+            <button type="submit"><p>SignIn</p></button>
+        </form>
+            @{
+                if(Model != null)
+                {
+                   <p style="color:red;">@Model</p>
+                }
+            }
+    </div>
+</body>
+</html>

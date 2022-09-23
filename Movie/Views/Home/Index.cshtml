@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Movie.Interface.IMovieType>
+@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.StyleLink = "/css/Style.css";
+}
+
+<div class="New_Content">
+    <div class="New">
+        <div class="New_Content_Photo">
+            <p>Photo Movie</p>
+        </div>
+        <div class="New_Intelligence">
+            <div class="Fon-Name">
+                <p>Movie title</p>
+            </div>
+            <div class="Text-Descriptions">
+                <p>Movie Descriptions</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="Box_Content">
+    <div class="Content">
+        <div class="online_filter">
+            <div class="Text_filter">
+                <p>Watch online</p>
+                <div class="filter">
+                    <img src="../img/filter_button.png">
+                    <img src="../img/filter_box.png">
+                    <img src="../img/filter_list.png">
+                </div>
+            </div>
+            <div class="Type_Video">
+                <a href="/?type=Film"><p>Movies</p></a>
+                <a href="/?&type=Serial"><p>Serirs</p></a>
+                <a><p>Cartoons</p></a>
+            </div>
+            <hr>
+        </div>
+        <div class="Box_Movie" id="BoxMovie">
+            <!--!=================================-->
+            @foreach (var item in Model)
+            {
+                <form class="InputPageMovie" method="get" action="@Url.Action("PageMovie", "Home")">
+                    <input type="hidden" name="Id" value='@item.Id' />
+                    <input type="hidden" name="Type" value='@item.GetType().Name' />
+
+                    <div class="MovieContent" onclick="this.parentNode.submit();">
+                        <div class="Movie">
+
+                            <div class="Characteristic ">
+                                <div class="Evaluation">
+                                    <p>@item.Evaluation</p>
+                                </div>
+                            </div>
+
+                            <img src="../@item.PosterPath" runat="server" alt="">
+                        </div>
+                        <div class="NameMovie">
+                            <p>@item.Name</p>
+                            <p></p>
+                        </div>
+                    </div>
+                </form>
+            }
+
+            <!--!=================================-->
+        </div>
+        <div class="New_Page">
+            @{
+                if (Model != null && Model.Count() > 0)
+                {
+                    int pN = 0;
+                    int count = 4;
+                    int.TryParse(this.Context.Request.Query["pageNumber"].ToString(), out pN);
+
+                    var s = pN - (pN == 0 ? 0 : pN > 1 ? 2 : 1);
+                    var e = (pN + count > ViewBag.PageCount + 1 ? pN + (ViewBag.PageCount - pN) + 1 : pN == 0 || pN == 1 ? pN + count : pN + count - 1);
+
+                    @for (int i = s; i < (count < ViewBag.PageCount ? e : count + 1); i++)
+                    {
+                        if (i == pN)
+                        {
+                            <div class="Page" style="background-color:orangered">
+                                <a href="/?pageNumber=@i&type=@(Model.ToList()[0].GetType().Name)"><p>@i</p></a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="Page">
+                                <a href="/?pageNumber=@i&type=@(Model.ToList()[0].GetType().Name)"><p>@i</p></a>
+                            </div>
+                        }
+
+                    }
+                }
+            }
+
+        </div>
+    </div>
+</div>

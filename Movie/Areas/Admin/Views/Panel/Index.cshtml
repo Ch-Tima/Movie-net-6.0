@@ -1,0 +1,74 @@
+﻿@model object;
+@{
+
+    var typeModel = ViewData.Eval("type") as string;
+    var MovieType = ViewData.Eval("obj") as IEnumerable<Movie.Interface.IMovieType>;
+
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="~/css/adminstyle/StyleAdminPanel.css" rel="stylesheet" />
+    <title>H</title>
+</head>
+<body>
+
+    <table class="ListElement">
+        <thead>
+            <tr>
+                <th>
+                    <p>ID</p>
+                </th>
+                <th>
+                    <p>Name</p>
+                </th>
+                <th>
+                    <p>Evalu.</p>
+                </th>
+                <th>
+                    <p>Poster</p>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in MovieType)
+            {
+                <tr id="ID_@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        <p>@Html.DisplayFor(modelItem => item.Name)</p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Evaluation)
+                    </td>
+                    <td>
+                        <input type="image" style="width:25px;" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)" src="../../img/image.png" value="../../@item.PosterPath">
+                    </td>
+                    <td>
+                        <button onclick="Delete(@item.Id, '@typeModel')">Delete</button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <img id="ShowImg" class="ShowImg" src="">
+
+    <div class="MessageBox" id="MessageBox">
+        <div class="Message">
+            <p id="msg"></p>
+        </div>
+        <button onclick="CloseMessage()">Close</button>
+    </div>
+
+    <script src="~/js/AdminScript/Panel.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</body>
+</html>

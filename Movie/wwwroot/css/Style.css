@@ -1,0 +1,230 @@
+.New_Content {
+    padding: 0 10px;
+}
+.New_Content_Photo {
+    width: 226px;
+    height: 293px;
+    background-color: white;
+    border-radius: 1em;
+}
+.New_Content p {
+    color: black;
+    font-size: 21px;
+    text-align: center;
+}
+.New {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: #282c35;
+    margin: 29px auto;
+    border-radius: 1em;
+    padding: 20px 0;
+}
+.New_Intelligence {
+    display: block;
+    margin-left: 195px;
+}
+.Fon-Name {
+    width: 710px;
+    height: 45px;
+    background-color: white;
+    border-radius: 1em;
+}
+.Text-Descriptions {
+    width: 710px;
+    height: 218px;
+    background-color: white;
+    border-radius: 1em;
+    margin-top: 30px;
+}
+@media (max-width:1200px) {
+    .New_Intelligence {
+        margin-left: 25px;
+    }
+
+    .Fon-Name {
+        width: 500px;
+        height: 45px;
+    }
+
+    .Text-Descriptions {
+        width: 500px;
+        height: 218px;
+    }
+}
+@media (max-width:800px) {
+    .New_Intelligence {
+        display: none;
+    }
+
+    .User p {
+        margin: 0px;
+    }
+}
+
+
+.Box_Content {
+    padding: 0 10px;
+}
+.Content {
+    width: 100%;
+    background-color: #282c35;
+    margin: 29px auto;
+    border-radius: 1em;
+}
+.Text_filter {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+.Text_filter p {
+    color: #e6e6e6;
+    font-size: 38px;
+}
+.filter {
+    display: flex;
+}
+.filter img {
+    max-height: 33px;
+    margin: 8px 0 0 30px;
+}
+.Type_Video {
+    display: flex;
+    margin-left: 90px;
+}
+.Type_Video a {
+        text-decoration: none;
+        margin: 5px 0;
+    }
+.Type_Video p {
+    color: #c5c5c5;
+    font-size: 28px;
+    padding: 0 25px;
+}
+@media(max-width:800px) {
+    .Type_Video {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .Type_Video p {
+        font-size: 23px;
+    }
+
+    .Text_filter p {
+        font-size: 28px;
+    }
+
+    .filter img {
+        max-height: 28px;
+    }
+}
+@media(max-width:600px) {
+    .Text_filter p {
+        display: none;
+    }
+
+    .Text_filter p {
+        font-size: 20px;
+    }
+
+    .Type_Video p {
+        font-size: 18px;
+        padding: 0 5px;
+    }
+
+    .filter img {
+        margin: 10px 10px 0 10px;
+    }
+}
+
+
+hr {
+    max-width: 1330px;
+    height: 2px;
+    margin: 0 auto;
+    border: none;
+    color: black;
+    background-color: black;
+}
+.Box_Movie {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.MovieContent {
+    display: block;
+}
+.NameMovie {
+    display: block;
+    text-align: center;
+    margin: 0.25em;
+}
+.NameMovie p {
+    color: white;
+    font-size: 18px;
+}
+.Movie {
+    max-width: 234px;
+    min-height: 352.65px;
+    margin: 0.65em;
+}
+.Movie img {
+    border-radius: 1em;
+    width: 100%;
+}
+.Characteristic {
+    float: right;
+    position: relative;
+    right: 3.45em;
+}
+.Evaluation {
+    position: absolute;
+    background-color: #52ac62;
+    border-radius: 0em 1em 0 1em;
+    width: 55px;
+    height: 30px;
+}
+.Evaluation p {
+    margin-left: 10px;
+}
+
+
+.Control_Property {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+.New_Page {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 1em 0;
+}
+.Page p {
+    text-align: center;
+    margin-top: 0.5em;
+    color: white;
+    font-size: 21px;
+}
+.Page {
+    margin: 0em 0.35em;
+    background-color: #52ac62;
+    width: 60px;
+    height: 60px;
+    border-radius: 2em;
+}
+@media (max-width:500px) {
+    .Page {
+        width: 40px;
+        height: 40px;
+        margin: 0em 0.15em;
+    }
+    .Page p {
+        font-size: 18px;
+        margin-top: 0.25em;
+    }
+}

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Movie</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link href="@ViewBag.StyleLink" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="Top_Bar">
+            <div class="Bar_Content">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#">Home</a>
+                            <a href="#">Movies</a>
+                            <a href="#">Series</a>
+                            <a href="#">Cartoons</a>
+                            <img src="../img/search_icon.png">
+                            <input type="text" placeholder="Search...">
+                        </li>
+                    </ul>
+                </nav>
+                <div class="User">
+                    <img src="../img/User_Photo.png">
+                    <p>Name</p>
+                </div>
+            </div>
+            <div class="burger-menu">
+                <a href="#" class="burger-menu_button">
+                    <span class="burger-menu_lines">
+
+                    </span>
+                </a>
+                <nav class="burger-menu_nav">
+                    <input type="text" placeholder="Искать здесь...">
+                    <a href="#" class="burger-menu_link">Главная</a>
+                    <a href="#" class="burger-menu_link">Фильмы</a>
+                    <a href="#" class="burger-menu_link">Сериалы</a>
+                    <a href="#" class="burger-menu_link">Мультфильмы</a>
+                    <a href="#"><img src="../img/User_PhotoW.png"><p class="User">Name</p></a>
+                </nav>
+                <div class="burger-menu_overlay"></div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <div class="up_control">
+        <div id="go_top"><img src="../img/up.png"></div>
+    </div>
+
+    <footer>
+        <div class="footer_text">
+            <div class="Text">
+                <p>Rules</p>
+                <p>Advertisement</p>
+                <p>Feedback</p>
+            </div>
+            <div class="NameCom">
+                <a href="https://github.com/Ch-Tima">
+                    <p>Ch-Tima</p>
+                </a>
+            </div>
+        </div>
+        <div class="Attention">
+            <p>Copying and distribution is strictly prohibited!</p>
+        </div>
+    </footer>
+
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+  
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

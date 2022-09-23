@@ -1,0 +1,71 @@
+﻿@using Movie.Interface;
+@using Movie.Models
+@model object;
+@{
+
+    var typeModel = ViewData.Eval("type") as string;
+    var MovieType = ViewData.Eval("obj") as IMovieType;
+
+    ViewBag.Title = MovieType.Name;
+    ViewBag.StyleLink = "/css/stylepagemovie.css";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+<div class="Main_Context">
+    <div class="Data_Movie">
+       <div class="Poster">
+            <img src="~/@(MovieType.PosterPath)" runat="server" alt="">
+       </div>
+       <div class="Description_Context">
+            <div class="Description_Data">
+
+                @{
+
+                    if (typeModel == "Serial")
+                    {
+                        if (!(MovieType as Serial).Completed)
+                        {
+                            <p>Cтатус: сезон @((MovieType as Serial).Season) серия @((MovieType as Serial).Episode)</p>
+                        }
+                        else {
+                            <p>Cтатус: Завершён</p>
+                        }
+
+                    }
+
+                    <p>This is test TEXT</p>
+                    <p>Продолжиткльность: 97min</p>
+                    <p>Жанрн: Боевик, Драма, Комедия</p>
+                    <p>Страна: Франция</p>
+                    <p>Режиссёр: Дебора Чоу</p>
+                    <p>В ролях: Вайнона Райдер, Дэвид Харбор, Финн Вулфхард, Милли Бобби Браун, Гейтен Матараццо, Калеб Маклафлин, Наталия Дайер, Чарли Хитон, Джо Кири, Кара Буоно, Сэди Синк</p>
+
+                }
+
+
+            </div>
+            <div class="Description_Text">
+                <p style="display:block;">
+                    Description: <br/>
+                    @(MovieType.Description);
+                </p>
+            </div>
+       </div>
+    </div>
+    <div class="List_File">
+        <table>
+            <tr>
+                <td><p>23:4</p></td>
+                <td><p>Name: NameFile_0...</p></td>
+                <td><input type="submit"></td>
+            </tr>
+        <tr>
+            <td><p>124:25</p></td>
+            <td><p>Name: NameFile_1...</p></td>
+            <td><input type="submit"></td>
+        </tr>
+
+        </table>
+    </div>
+</div>

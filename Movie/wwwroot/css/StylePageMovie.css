@@ -1,0 +1,58 @@
+
+/*===MainContext===*/
+.Main_Context{
+
+}
+.Data_Movie{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+
+    background-color: #282c35;
+    border-radius: 1em;
+    
+    margin-bottom: 1em;
+}
+.Description_Context{
+    width: 70%;
+    height: auto;
+}
+
+.Description_Text{
+    
+}
+.Description_Text p{
+    display: none;
+}
+
+.Poster{
+    width: 20%;
+    height: 100%;
+    border-radius: 1em;
+}
+.Poster img{
+    border-radius: 1em;
+    width: 100%;
+}
+
+.List_File{
+    background-color: #282c35;
+    border-radius: 1em;
+}
+.List_File table{
+    width: 100%;
+}
+.List_File tr{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px 0px;
+}
+.List_File tr td p{
+    min-width: 99px;
+}
+
+@media (max-width:700px) {
+    .Description_Text p {
+        font-size: 14px;
+    }
+}

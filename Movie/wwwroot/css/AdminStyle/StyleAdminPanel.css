@@ -1,0 +1,71 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body {
+	height: 100%;
+	background: #6E94E1;
+}
+
+p {
+	font-size: 17px;
+}
+
+.MainContext {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.ListElement{
+	width:80%;
+	margin: 0px auto;
+}
+.ListElement tr {
+	background-color: azure;
+	border-color: azure;
+	border-width:5px;
+}
+tbody p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+
+.ShowImg {
+	display: block;
+	width: 150px;
+	height: auto;
+	border-radius: 0.5em;
+	position: fixed;
+	left: 86%;
+	top: 30%;
+}
+
+.MessageBox {
+	display: none;
+	width: 250px;
+	height: 150px;
+	background-color: antiquewhite;
+	position: fixed;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	top: 150px;
+	border-radius: 0.5em;
+	border: 3px solid darkgray;
+}
+.Message {
+	height: 110px;
+}
+.Message p {
+	text-align: center;
+	margin-top: 10px;
+}
+.MessageBox button {
+	float: right;
+	margin-right: 10px;
+}
