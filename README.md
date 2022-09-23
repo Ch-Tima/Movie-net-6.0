@@ -1,3 +1,6 @@
+
+![Platform](https://img.shields.io/badge/ASP.NET%20Core-6.0-brightgreen)
+
 # Movie-net-6.0
 #### Todo list:
  - [ ] Main Page 'Home'
