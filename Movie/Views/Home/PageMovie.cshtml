@@ -21,25 +21,21 @@
             <div class="Description_Data">
 
                 @{
+                    <p>@MovieType.Name</p>
 
                     if (typeModel == "Serial")
                     {
                         if (!(MovieType as Serial).Completed)
                         {
-                            <p>Cтатус: сезон @((MovieType as Serial).Season) серия @((MovieType as Serial).Episode)</p>
+                            <p>Status: season @((MovieType as Serial).Season) episode @((MovieType as Serial).Episode)</p>
                         }
-                        else {
-                            <p>Cтатус: Завершён</p>
+                        else 
+                        {
+                            <p>Status: season @((MovieType as Serial).Season) episode @((MovieType as Serial).Episode)</p>
+                            <p>Status: Completed</p>
                         }
 
                     }
-
-                    <p>This is test TEXT</p>
-                    <p>Продолжиткльность: 97min</p>
-                    <p>Жанрн: Боевик, Драма, Комедия</p>
-                    <p>Страна: Франция</p>
-                    <p>Режиссёр: Дебора Чоу</p>
-                    <p>В ролях: Вайнона Райдер, Дэвид Харбор, Финн Вулфхард, Милли Бобби Браун, Гейтен Матараццо, Калеб Маклафлин, Наталия Дайер, Чарли Хитон, Джо Кири, Кара Буоно, Сэди Синк</p>
 
                 }
 
@@ -52,6 +48,9 @@
                 </p>
             </div>
        </div>
+        <div style="position: absolute;right: 8.5%; margin: -10px;background: #52ac62;width: 53px;border-radius: 0 1em 0 1em; text-align: center;">
+            <p>7.4</p>
+        </div>
     </div>
     <div class="List_File">
         <table>

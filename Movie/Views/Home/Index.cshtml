@@ -78,7 +78,7 @@
                     var s = pN - (pN == 0 ? 0 : pN > 1 ? 2 : 1);
                     var e = (pN + count > ViewBag.PageCount + 1 ? pN + (ViewBag.PageCount - pN) + 1 : pN == 0 || pN == 1 ? pN + count : pN + count - 1);
 
-                    @for (int i = s; i < (count < ViewBag.PageCount ? e : count + 1); i++)
+                    @for (int i = s; i < (count < ViewBag.PageCount ? e : ViewBag.PageCount + 1); i++)
                     {
                         if (i == pN)
                         {

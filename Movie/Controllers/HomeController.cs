@@ -24,8 +24,7 @@ namespace Movie.Controllers
         [HttpGet]
         public IActionResult Index(int pageNumber = 0, string type = nameof(Film))
         {
-            if (pageNumber < 0)
-                pageNumber = 0;
+            pageNumber = pageNumber < 0 ? 0 : pageNumber;
 
             int countElemen = 4;
             switch (type)
