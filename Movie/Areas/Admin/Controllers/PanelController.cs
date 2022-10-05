@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.RenderTree;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Movie.Areas.Admin.Filters;
 using Movie.Context.Repository;
 using Movie.Models;
@@ -12,23 +10,10 @@ namespace Movie.Areas.Admin.Controllers
     [Authentication]
     public class PanelController : Controller
     {
-        private readonly FilmRepository _filmRepository;
-        private readonly SerialRepository _serialRepository;
+        public IActionResult Index() => View();
 
-        public PanelController(Context.MovieContext movieContext)
-        {
-            _filmRepository = new FilmRepository(movieContext);
-            _serialRepository = new SerialRepository(movieContext);
-        }
+        /*
 
-        public IActionResult Index(string type = nameof(Models.Film))
-        {
-            if (type == nameof(Models.Serial))
-                return View(new { type = type, obj = _serialRepository.GetAll() });
-
-            return View(new { type = type, obj = _filmRepository.GetAll() });
-
-        }
         [HttpPost]
         public IActionResult Delete(int id, string type)
         {
@@ -46,5 +31,6 @@ namespace Movie.Areas.Admin.Controllers
             }
             return res ? Ok("Good!") : BadRequest($"Error: Failed remove item->'Id:{id}'");
         }
+*/
     }
 }

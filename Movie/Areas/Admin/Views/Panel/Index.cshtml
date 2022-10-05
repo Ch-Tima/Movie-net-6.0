@@ -1,8 +1,4 @@
-﻿@model object;
-@{
-
-    var typeModel = ViewData.Eval("type") as string;
-    var MovieType = ViewData.Eval("obj") as IEnumerable<Movie.Interface.IMovieType>;
+﻿@{
 
     ViewData["Title"] = "Index";
     Layout = null;
@@ -17,48 +13,42 @@
 </head>
 <body>
 
-    <table class="ListElement">
-        <thead>
-            <tr>
-                <th>
-                    <p>ID</p>
-                </th>
-                <th>
-                    <p>Name</p>
-                </th>
-                <th>
-                    <p>Evalu.</p>
-                </th>
-                <th>
-                    <p>Poster</p>
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in MovieType)
-            {
-                <tr id="ID_@item.Id">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        <p>@Html.DisplayFor(modelItem => item.Name)</p>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Evaluation)
-                    </td>
-                    <td>
-                        <input type="image" style="width:25px;" onmouseover="MouseOver(this)" onmouseout="MouseOut(this)" src="../../img/image.png" value="../../@item.PosterPath">
-                    </td>
-                    <td>
-                        <button onclick="Delete(@item.Id, '@typeModel')">Delete</button>
+    <div class="MainContext">
+        <div>
+            <button id="AddNew">AddNew</button>
+            <div class="Filter">
+                <select id="listType">
+                    <option value="Film">Film</option>
+                    <option value="Serial">Serial</option>
+                </select>
+            </div>
+        </div>
 
-                    </td>
+        <table class="ListElement">
+            <thead>
+                <tr>
+                    <th>
+                        <p>ID</p>
+                    </th>
+                    <th>
+                        <p>Name</p>
+                    </th>
+                    <th>
+                        <p>Evalu.</p>
+                    </th>
+                    <th>
+                        <p>Poster</p>
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody id="ListElements">
+            </tbody>
+        </table>
+
+
+    </div>
+
     <img id="ShowImg" class="ShowImg" src="">
 
     <div class="MessageBox" id="MessageBox">
@@ -68,7 +58,11 @@
         <button onclick="CloseMessage()">Close</button>
     </div>
 
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="~/js/AdminScript/Panel.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </body>
 </html>
