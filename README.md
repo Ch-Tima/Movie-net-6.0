@@ -10,7 +10,10 @@
    - [X] Rewind the page
  - [ ] Create AdminPanel
    - [X] Authorization
-   - [ ] Reamove, Edit
+   - [ ] Reamove, Edit, Add
    - [ ] Filter and Search
+- [ ] User profile
+  - [ ] Authorization
+  - [ ] When you first register sending a message (SendGrid)
 - [ ] ...
  <img width="100%" src="/image/Move.gif">
