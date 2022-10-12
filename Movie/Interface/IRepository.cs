@@ -18,6 +18,7 @@ namespace Movie.Interface
 
         int GetCount();
         List<T> GetAll();
+        Task<List<T>> GetAllAsync();
         T GetId(int Id);
         List<T> GetPart(Func<T, bool> func);
         List<T> GetPart(int startIndex, int count);

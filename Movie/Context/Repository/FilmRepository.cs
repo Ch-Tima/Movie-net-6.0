@@ -26,7 +26,7 @@ namespace Movie.Context.Repository
             if (obj == null)
                 return;
 
-            _movieContext.Films.Add(obj);
+            await _movieContext.Films.AddAsync(obj);
             await _movieContext.SaveChangesAsync();
         }
 
@@ -52,9 +52,10 @@ namespace Movie.Context.Repository
             return _movieContext.Films.Count();
         }
         public List<Film> GetAll() => _movieContext.Films.ToList();
+        public async Task<List<Film>> GetAllAsync() => await _movieContext.Films.ToListAsync();
         public Film GetId(int Id)
         {
-            return _movieContext.Films.First(x => x.Id == Id);
+            return _movieContext.Films.FirstOrDefault(x => x.Id == Id);
         }
         public List<Film> GetPart(Func<Film, bool> func)
         {

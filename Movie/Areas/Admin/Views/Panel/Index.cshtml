@@ -58,7 +58,22 @@
         <button onclick="CloseMessage()">Close</button>
     </div>
 
-
+    <div class="EditObj" id="WinEditObj">
+        <div class="MessageBox" style="display:block;">
+            <form enctype="multipart/form-data" method="post">
+                <div class="def">
+                    <input type="text" id="eName" name="name" placeholder="Name" required/>
+                    <input type="number" step="0.1" max="10" min="0" id="eEvaluation" name="Evaluation" placeholder="Evaluation" required />
+                    <textarea type="text" id="eDescription" name="Description"> </textarea>
+                    <input type="file" id="ePosterPath" name="PosterPath" required />
+                </div>
+                <div id="Additional">
+                </div>
+            </form>
+            <button id="SaveBtn" type="button">Save</button>
+            <button id="CancelBtn" type="button">Cancel</button>
+        </div>
+    </div>
 
 
 

@@ -15,11 +15,20 @@ namespace Movie.Context.Repository
 
         public void Add(Serial obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+                return;
+
+            _movieContext.Serials.Add(obj);
+            _movieContext.SaveChanges();
         }
-        public Task AddAsync(Serial obj)
+        public async Task AddAsync(Serial obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+                return;
+
+            await _movieContext.Serials.AddAsync(obj);
+            await _movieContext.SaveChangesAsync();
+
         }
 
 
@@ -44,14 +53,12 @@ namespace Movie.Context.Repository
         {
             return _movieContext.Serials.Count();
         }
-        public List<Serial> GetAll()
-        {
-            return _movieContext.Serials.ToList();
-        }
+        public List<Serial> GetAll() => _movieContext.Serials.ToList();
+        public async Task<List<Serial>> GetAllAsync() => await _movieContext.Serials.ToListAsync();
 
         public Serial GetId(int Id)
         {
-            return _movieContext.Serials.First(x => x.Id == Id);
+            return _movieContext.Serials.FirstOrDefault(x => x.Id == Id);
         }
 
         public List<Serial> GetPart(Func<Serial, bool> func)

@@ -77,6 +77,54 @@ function Delete(id = -1) {
     });
 }
 
+//AddNew
+function AddNew() {
+
+    if ($("#listType option:selected").text() == "Serial") {
+        $("#Additional").append('<input type="number" step="1" id="eSeason" placeholder="Season" required />' +
+            '<input type="number" step="1" id="eEpisode" placeholder="Episode" required />' +
+            '<input type="checkbox" id="eCompleted" placeholder="Completed" required />');
+    }
+    $("#WinEditObj").css("display", "block");
+}
+function Save() {
+    var obj = new FormData();
+    obj.append('Name', $("#eName").val());
+    obj.append('Evaluation', $("#eEvaluation").val());
+    obj.append('Description', $("#eDescription").val());
+    obj.append('file', $("#ePosterPath")[0].files[0]);
+
+    if ($("#listType option:selected").text() == "Serial") {
+        obj.append('Season', $("#eSeason").val());
+        obj.append('Episode', $("#eEpisode").val());
+        obj.append('Completed', $("#eCompleted").is(":checked"));
+    }
+
+    $.ajax({
+        url: "../../api/Movie/" + $("#listType option:selected").text(),
+        type: "POST",
+        contentType: false,
+        processData: false,
+        data: obj,
+        success: function (data) {
+            console.log('Ok');
+            GetAll();
+        },
+        error: function (err) {
+            OpenMessage(err.responseText);
+        }
+    });
+
+    Cancel();
+}
+function Cancel() {
+    $("#Additional").html("");
+    $("div[class=def]").find("input").val("");
+    $("div[class=def]").find("textarea").val("")
+    $("#WinEditObj").css("display", "none");
+}
+
+
 //see image
 function MouseOver(argument) {
 

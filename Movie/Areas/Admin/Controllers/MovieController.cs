@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Movie.Areas.Admin.Filters;
-using Movie.Context.Repository;
-using Movie.Interface;
-using Movie.Models;
+﻿using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Immutable;
+using System.Security.Cryptography;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Movie.Models;
+using Movie.Context;
+using Movie.Context.Repository;
+using Movie.Areas.Admin.Filters;
 
 namespace Movie.Areas.Admin.Controllers
 {
@@ -17,11 +18,13 @@ namespace Movie.Areas.Admin.Controllers
 
         private readonly FilmRepository _filmRepository;
         private readonly SerialRepository _serialRepository;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public MovieController(Context.MovieContext movieContext)
+        public MovieController(MovieContext movieContext, IWebHostEnvironment appEnvironment)
         {
             _filmRepository = new FilmRepository(movieContext);
             _serialRepository = new SerialRepository(movieContext);
+            _appEnvironment = appEnvironment;
         }
 
         // GET: api/<MovieController>
@@ -30,9 +33,9 @@ namespace Movie.Areas.Admin.Controllers
         {
             switch (type)
             {
-                case nameof(Models.Film):
+                case nameof(Film):
                     return _filmRepository.GetAll();
-                case nameof(Models.Serial):
+                case nameof(Serial):
                     return _serialRepository.GetAll();
                 default:
                     return BadRequest("Error: Not found type!");
@@ -62,9 +65,64 @@ namespace Movie.Areas.Admin.Controllers
 
         // POST api/<MovieController>
         [HttpPost("{type}")]
-        public async Task<IActionResult> PostAsync(string type)
+        public async Task<ActionResult> PostAsync([FromRoute] string type, [FromForm] IFormFile file)
         {
-            return BadRequest();
+
+            try
+            {
+                if (file == null)
+                    throw new Exception("File 'Image' equals is null!");
+
+                string namePoster = HashTime() + ".png";
+                await SaveFile(file, namePoster);
+
+                switch (type)
+                {
+                    case nameof(Film):
+                        {
+                            var temp = Request.Form.ToImmutableDictionary();
+
+                            var film = new Film();
+                            film.Name = temp["Name"];
+                            film.Evaluation = float.Parse(temp["Evaluation"]);
+                            film.Description = temp["Description"];
+                            film.PosterPath = "/img/FileBD/" + namePoster;
+
+                            if (film.Name == null || film.Description == null || film.Evaluation < 0)
+                                throw new Exception("One of the partners equals is null!");
+
+                            await _filmRepository.AddAsync(film);
+                        }
+                        break;
+                    case nameof(Serial):
+                        {
+                            var temp = Request.Form.ToImmutableDictionary();
+
+                            var serial = new Serial();
+                            serial.Name = temp["Name"];
+                            serial.Evaluation = float.Parse(temp["Evaluation"]);
+                            serial.Description = temp["Description"];
+                            serial.PosterPath = "img/FileBD/" + namePoster;
+
+                            serial.Episode = int.Parse(temp["Episode"]);
+                            serial.Season = int.Parse(temp["Season"]);
+                            serial.Completed = bool.Parse(temp["Completed"]);
+
+                            if (serial.Name == null || serial.Description == null || serial.Evaluation < 0)
+                                throw new Exception("One of the partners equals is null!");
+
+                            await _serialRepository.AddAsync(serial);
+                        }
+                        break;
+                    default:
+                        return BadRequest("Error: Not found type!");
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT api/<MovieController>/5
@@ -91,6 +149,33 @@ namespace Movie.Areas.Admin.Controllers
                     return BadRequest("Error: Not found type!");
             }
             return Ok($"Success delete item id:{id}!");
+        }
+
+        private async Task SaveFile(IFormFile file, string newName)
+        {
+            try
+            {
+                string path = "/img/FileBD/" + newName;
+                using (var fs = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await file.CopyToAsync(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+        private string HashTime()
+        {
+            using (var sha = SHA256.Create())
+            {
+                var hashBytes = sha.ComputeHash(Encoding.UTF8.GetBytes(DateTime.Now.ToString()));
+                var hash = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                return hash;
+            }
+
         }
     }
 }

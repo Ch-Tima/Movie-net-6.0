@@ -4,7 +4,7 @@
 }
 
 html, body {
-	height: 100%;
+	width: 100%;
 	background: #6E94E1;
 }
 
@@ -13,14 +13,20 @@ p {
 }
 
 .MainContext {
-	width: 100%;
-	display: flex;
-	justify-content: center;
+	width: 80%;
+	margin: 0 auto;
 }
-
-.ListElement{
-	width:80%;
-	margin: 0px auto;
+.Filter{
+	float: right;
+}
+.Filter select {
+	width: 100px;
+	min-height: 20px;
+	border: none;
+	margin: 2px;
+}
+.ListElement {
+	width: 100%;
 }
 .ListElement tr {
 	background-color: azure;
@@ -68,4 +74,13 @@ tbody p {
 .MessageBox button {
 	float: right;
 	margin-right: 10px;
+}
+
+.EditObj {
+	display: none;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(173, 158, 166, 0.5);
+	position: absolute;
+	top: 0;
 }
